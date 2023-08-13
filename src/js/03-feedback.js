@@ -1,4 +1,6 @@
 import throttle from 'lodash.throttle';
+import'../css/03-feedback.css';
+
 const emailInput = document.querySelector('input[name="email"]');
 const messageInput = document.querySelector('textarea[name="message"]');
 const submitButton = document.querySelector('button[type="submit"]');
@@ -34,6 +36,11 @@ function handleSubmitEvent(evt) {
     console.log(formData);
     emailInput.value = '';
     messageInput.value = '';
+
+    if (messageInput.value === '' || emailInput.value === '') {
+        alert('Будь ласка, заповніть усі поля');
+        return;
+      }
 }
 document.addEventListener('DOMContentLoaded', () => {
     restoreFormStateFromLocalStorage();
@@ -41,3 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     messageInput.addEventListener('input', handleInputEvent);
     submitButton.addEventListener('click', handleSubmitEvent);
 });
+
+
+
